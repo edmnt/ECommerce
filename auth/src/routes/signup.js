@@ -56,8 +56,7 @@ router.post("/api/users/signup", async (req, res)=>{
 
   } catch (error) {
     console.log(error);
-    res.status(500).send("Server issued an error");
-    return;
+    return res.status(500).send("Server issued an error");
   }
 
 });

@@ -1,0 +1,29 @@
+{
+  "products": [
+    {
+      "title": "Laptop Backpack",
+      "price": 109.95,
+      "description": "A cool laptop backpack"
+    }, 
+    {
+      "title": "Casual T-Shirt for Men",
+      "price": 22.3,
+      "description": "Slim-fitting style, t-shoty for men"
+    },
+    {
+      "title": "Mens Cotton Jacket",
+      "price": 55.99,
+      "description": "Great outerwear jackets for spring, autumn, or winter."
+    },
+    {
+      "title": "Gold-plated Earrings",
+      "price": 10.99,
+      "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings."
+    },
+    {
+      "title": "Mens Casual Slim Fit",
+      "price": 15.99,
+      "description": "An aweome shirt for men"
+    }
+  ]
+}
