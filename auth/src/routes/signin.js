@@ -28,11 +28,15 @@ router.post("/api/users/signin", async (req, res)=>{
       return res.status(400).send({message: "Invalid or mistaken password."});
     }
 
-    const userJwt = jwt.sign({
-      iss: __CFG.JWT_ISSUER,
-      email
-    }, __CFG.JWT_KEY);
-
+    const userJwt = jwt.sign(
+      {
+        iss: __CFG.JWT_ISSUER,
+        email,
+        id: existingUser.id
+      }, 
+      __CFG.JWT_KEY,
+      { expiresIn: '1h' }
+   );
 
     await Token.create({token: userJwt, user: existingUser});
 

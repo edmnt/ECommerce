@@ -18,6 +18,7 @@
   - Total cost should be calculate with the service's cost and the amount of the order
   - If the user's balance is enough order should be written in the database and the balance should recalculated.
   - If the user's balance is not enough then return an error for it.
+  - When the balance of the user used,in user table update the user's balance
 ### List Orders (GET)
   - The list of the orders should be return as JSON.
 ## SERVICE TABLE

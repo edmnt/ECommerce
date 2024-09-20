@@ -10,8 +10,7 @@ async function creatingServices(servicesJson){
       return console.log("Services are already created.");
     }else{
       for await (let service of services){
-        const newService = await Service.create({name: service.name, price: service.price, description: service.description});
-        // console.log(newService);
+        await Service.create({name: service.name, price: service.price, description: service.description});
       }
       return;
     }

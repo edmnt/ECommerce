@@ -22,6 +22,10 @@ const Order = sequelize.define('orders', {
   price:{
     type: Sequelize.BIGINT,
     allowNull: false
+  },
+  userId:{
+    type: Sequelize.STRING,
+    allowNull: false
   }
 });
 
