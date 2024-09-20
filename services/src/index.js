@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 import { sequelize } from "../../utils/database.js";
 import { readFile } from 'fs/promises';
-import { creatingServices } from "./middlewares/createService.js"
+import { creatingServices } from "./services/createService.js"
 import express from "express";
 import bodyParser from "body-parser";
 
