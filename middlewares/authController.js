@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { _CFG } from "../app.js";
 
 export const authController = (req, res, next) => {
   let token = req.headers.authorization;
@@ -10,7 +9,7 @@ export const authController = (req, res, next) => {
 
   token = token.split(' ')[1];
 
-  jwt.verify(token, _CFG.JWT_KEY,{issuer: _CFG.JWT_ISSUER}, (err, decoded) => {
+  jwt.verify(token, process.env.JWT_KEY,{issuer: process.env.JWT_ISSUER}, (err, decoded) => {
     if (err) {
     if (err.name === 'TokenExpiredError') {
       return res.status(401).json({ message: 'Token expired. Please sign in and try again.' });
