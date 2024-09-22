@@ -2,6 +2,7 @@ import { sequelize } from "../database.js";
 import { User } from "../../models/user.js";
 import jwt from "jsonwebtoken";
 import { Service } from "../../models/service.js";
+import { _CFG } from "../../app.js";
 
 beforeAll(async () => {
   process.env.JWT_KEY = "mente123";
@@ -28,7 +29,7 @@ global.signin = async () => {
     balance: 100
   });
 
-  const testToken = jwt.sign({iss: process.env.JWT_ISSUER, email: testUser.email, id: testUser.id}, process.env.JWT_KEY, {expiresIn: '1h'});
+  const testToken = jwt.sign({iss: _CFG.JWT_ISSUER, email: testUser.email, id: testUser.id}, _CFG.JWT_KEY, {expiresIn: '1h'});
 
   return `Bearer ${testToken}`;
 };
