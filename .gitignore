@@ -1,3 +1,4 @@
 node_modules
-ecommerce.sqlite
 eCommerce.md
+ecommerce.sqlite
+.env
