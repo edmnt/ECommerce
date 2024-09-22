@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { User } from "../models/user.js";
 import { Token } from "../models/user.js";
+import { _CFG } from "../app.js";
 
 const router = express.Router();
 
@@ -24,11 +25,11 @@ router.post("/api/users/signin", async (req, res)=>{
 
     const userJwt = jwt.sign(
       {
-        iss: process.env.JWT_ISSUER,
+        iss: _CFG.JWT_ISSUER,
         email,
         id: existingUser.id
       }, 
-      process.env.JWT_KEY,
+      _CFG.JWT_KEY,
       { expiresIn: '1h' }
    );
 
