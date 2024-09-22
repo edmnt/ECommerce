@@ -12,9 +12,11 @@ router.get("/api/v1/orders", authController,async(req,res)=>{
       return res.status(401).send({ message: 'You are not authorized to make an order. Please signin and try again.' });
     }
     const orders = await Order.findAll({where: {userId: orderingUser.id}});
-    if(!orders){
-      return res.status(400).send({message: "There is no order that purchased."})
+
+    if(orders.length === 0){
+      return res.status(200).send({message: "There is no order that purchased."})
     }
+
     res.status(200).send({orders})
 
   } catch (error) {

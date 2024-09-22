@@ -16,7 +16,7 @@ router.post("/api/v1/order/:serviceId", authController, async (req,res) =>{
       return res.status(401).send({ message: 'You are not authorized to make an order. Please signin and try again.' });
     }
     if(!orderingService){
-      return res.status(400).send({message: "The service that you want to purchase is not available. Pleas choose another service."});
+      return res.status(200).send({message: "The service that you want to purchase is not available. Pleas choose another service."});
     }
     const orderPrice = await (orderingService.price)*amount;
     const remainingBalance = await (orderingUser.balance) - orderPrice;
@@ -25,8 +25,7 @@ router.post("/api/v1/order/:serviceId", authController, async (req,res) =>{
       return res.status(400).send({message: "Insufficient balance. Please control your balance and try again."});
     }
     orderingUser.balance = remainingBalance;
-    const updatedUser = await orderingUser.save();
-    console.log("Updated User", updatedUser);
+    await orderingUser.save();
 
     const order = await Order.create({amount, serviceId: orderingService.id, userId: orderingUser.id, price:orderPrice})
 
