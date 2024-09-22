@@ -11,7 +11,7 @@ dotenv.config();
 
 const _CFG = Object.freeze({
   PORT: process.env.PORT ?? 3000,
-  SECRET_TOKEN: process.env.JWT_KEY ?? "mente123",
+  JWT_KEY: process.env.JWT_KEY ?? "mente123",
   JWT_ISSUER: process.env.JWT_ISSUER ?? "eda2095",
 });
 
