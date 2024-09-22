@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { _CFG } from "../index.js";
+import { _CFG } from "../app.js";
 
 export const authController = (req, res, next) => {
   let token = req.headers.authorization;

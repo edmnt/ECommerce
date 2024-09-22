@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { User } from "../models/user.js";
 import { Token } from "../models/user.js";
-import { _CFG } from "../index.js";
+import { _CFG } from "../app.js";
 
 const router = express.Router();
 
@@ -35,7 +35,7 @@ router.post("/api/users/signin", async (req, res)=>{
 
     await Token.create({token: userJwt, user: existingUser});
 
-    return res.status(201)
+    return res.status(200)
     .header('Authorization', `Bearer ${userJwt}`)
     .send({token: userJwt});
 
