@@ -3,7 +3,7 @@ import { User } from "../models/user.js";
 import express from "express";
 import { Service } from "../models/service.js";
 
-const router =express.Router();
+const router = express.Router();
 
 router.get("/api/v1/services", authController, async(req,res)=>{
   try {

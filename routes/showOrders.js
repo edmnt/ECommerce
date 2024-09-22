@@ -9,7 +9,7 @@ router.get("/api/v1/orders", authController,async(req,res)=>{
   try {
     const orderingUser = await User.findOne({where: {id: req.user.id}});
     if(!orderingUser){
-      return res.status(401).send({ message: 'You are not authorized to make an order. Please signin.' });
+      return res.status(401).send({ message: 'You are not authorized to make an order. Please signin and try again.' });
     }
     const orders = await Order.findAll({where: {userId: orderingUser.id}});
     if(!orders){

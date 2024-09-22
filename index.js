@@ -5,8 +5,11 @@ import { creatingServices } from "./routes/createService.js";
 import { startDatabase } from "./settings/initDatabase.js";
 
 dotenv.config();
-const _CFG = Object.freeze({PORT: process.env.PORT ?? 3000});
-
+const _CFG = Object.freeze({
+  PORT: process.env.PORT,
+  JWT_KEY: process.env.JWT_KEY,
+  JWT_ISSUER: process.env.JWT_ISSUER
+});
 
 const json = JSON.parse(
   await readFile(
@@ -20,3 +23,4 @@ app.listen(_CFG.PORT, ()=>{
 
 await startDatabase();
 await creatingServices(json);
+export {_CFG}

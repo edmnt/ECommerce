@@ -1,15 +1,11 @@
 import jwt from "jsonwebtoken";
-import * as dotenv from "dotenv";
-
-dotenv.config();
-
-const _CFG = Object.freeze({JWT_KEY: process.env.JWT_KEY, JWT_ISSUER: process.env.JWT_ISSUER});
+import { _CFG } from "../index.js";
 
 export const authController = (req, res, next) => {
   let token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).send({ message: 'Unauthorized.' });
+    return res.status(401).send({ message: 'You are not signed in. Please sign in and try again.' });
   }
 
   token = token.split(' ')[1];
@@ -17,7 +13,7 @@ export const authController = (req, res, next) => {
   jwt.verify(token, _CFG.JWT_KEY,{issuer: _CFG.JWT_ISSUER}, (err, decoded) => {
     if (err) {
     if (err.name === 'TokenExpiredError') {
-      return res.status(401).json({ message: 'Token expired. Please sign in again.' });
+      return res.status(401).json({ message: 'Token expired. Please sign in and try again.' });
     }
       console.log(err);
       return res.status(500).send("Server issued an error");

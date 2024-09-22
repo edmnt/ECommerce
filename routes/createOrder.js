@@ -13,7 +13,7 @@ router.post("/api/v1/order/:serviceId", authController, async (req,res) =>{
     const orderingUser = await User.findOne({where: {id: req.user.id}});
     const orderingService = await Service.findOne({where: {id: req.params.serviceId}});
     if(!orderingUser){
-      return res.status(401).send({ message: 'You are not authorized to make an order. Please signin.' });
+      return res.status(401).send({ message: 'You are not authorized to make an order. Please signin and try again.' });
     }
     if(!orderingService){
       return res.status(400).send({message: "The service that you want to purchase is not available. Pleas choose another service."});
