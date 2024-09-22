@@ -40,7 +40,9 @@ router.post("/api/users/signin", async (req, res)=>{
 
     await Token.create({token: userJwt, user: existingUser});
 
-    return res.status(201).send({token: userJwt});
+    return res.status(201)
+    .header('Authorization', `Bearer ${userJwt}`)
+    .send({token: userJwt});
 
   } catch (error) {
     console.log(error);
