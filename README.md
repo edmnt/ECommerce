@@ -32,10 +32,10 @@ This project's abilities are;
     ```bash
     npm start
     ```
-  - With docker (**projectName** can named as you wish)
+  - With docker (You can change the project name)
     ```bash
-    docker build -t <projectName> .
-    docker run -p 3000:3000 <projectName>
+    docker build -t ecommerceProject .
+    docker run -p 3000:3000 eCommerceProject
      ```
 
 4. You can use Postman or likewise tools to test the project. When you are testing with these kind of tools, don't forget to add Authorization and token to headers. The token value should contains Bearer.
@@ -46,7 +46,8 @@ This project's abilities are;
 
 ## Other Commands
 
-You can use this command to run unit tests.
+You can use this command to run tests.
+
 
   ```bash
   npm test
