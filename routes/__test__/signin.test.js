@@ -3,9 +3,9 @@ import request from "supertest";
 
 it("fails when a email doesn't exist is supplied", async ()=>{
   await request(app)
-    .post("/api/users/signin")
+    .post("/api/v1/signin")
     .send({
-      "email": "edanurmente@gmail.com",
+      "email": "fdhjhfd@gmail.com",
       "password": "123456"
     })
     .expect(400);
