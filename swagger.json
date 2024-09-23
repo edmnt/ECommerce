@@ -139,6 +139,8 @@
         "responses": {
           "200": {
             "description": "Successful",
+            "security":
+              {"bearerAuth": []},
             "content": {
               "application/json": {
                 "schema": {

@@ -26,7 +26,7 @@ This project's abilities are;
     ```bash
     npm install
     ```
-3. Please control your 3000 port is on process before start the project. You can use the command down below to control and kill the process on your port.
+3. Please control your 3000 port is not on process before starting the project. You can use the command down below to control and kill the process on your port.
    ```bash
     lsof -i :3000
     kill -9 <PID>
@@ -47,6 +47,13 @@ This project's abilities are;
     ```bash
     Authorization:Bearer <TOKEN>
     ```  
+
+## Documentation
+
+When you run the project you can also access the documentation of the project. It is created with swagger.
+The documentation link is down below.
+
+`localhost:3000/api-docs`
 
 ## Other Commands
 
