@@ -14,7 +14,7 @@ router.get("/api/v1/orders", authController,async(req,res)=>{
     const orders = await Order.findAll({where: {userId: orderingUser.id}});
 
     if(orders.length === 0){
-      return res.status(200).send({message: "There is no order that purchased."})
+      return res.status(204).send({message: "There is no order that purchased."})
     }
 
     res.status(200).send({orders})

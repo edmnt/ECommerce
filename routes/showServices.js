@@ -13,7 +13,7 @@ router.get("/api/v1/services", authController, async(req,res)=>{
     }
     const services = await Service.findAll({});
     if(!services){
-      return res.status(200).send({message: "There is no service."})
+      return res.status(204).send({message: "There is no service."})
     }
     res.status(200).send({services})
 

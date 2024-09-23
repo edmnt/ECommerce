@@ -7,7 +7,7 @@ import { _CFG } from "../app.js";
 
 const router = express.Router();
 
-router.post("/api/users/signin", async (req, res)=>{
+router.post("/api/v1/signin", async (req, res)=>{
   try {
     const {email, password} = req.body;
     if(!email || !password){

@@ -13,7 +13,7 @@ it("fails when a email doesn't exist is supplied", async ()=>{
 
 it("fails when an incorrect password is supplied", async ()=>{
   await request(app)
-    .post("/api/users/signup")
+    .post("/api/v1/signup")
     .send({
       "name": "eda",
       "surname": "mente",
@@ -23,7 +23,7 @@ it("fails when an incorrect password is supplied", async ()=>{
     .expect(201);
 
     await request(app)
-    .post("/api/users/signin")
+    .post("/api/v1/signin")
     .send({
       "email": "edanurrmente@gmail.com",
       "password": "askjdfsk"
@@ -33,7 +33,7 @@ it("fails when an incorrect password is supplied", async ()=>{
 
   it("fails when a email or password is empty", async ()=>{
     await request(app)
-      .post("/api/users/signin")
+      .post("/api/v1/signin")
       .send({
         "email": "",
         "password": "123456"
@@ -41,7 +41,7 @@ it("fails when an incorrect password is supplied", async ()=>{
       expect(400);
 
       await request(app)
-      .post("/api/users/signin")
+      .post("/api/v1/signin")
       .send({
         "email": "edanurrmente@gmail.com",
         "password": ""
@@ -51,7 +51,7 @@ it("fails when an incorrect password is supplied", async ()=>{
 
 it("return 200 after successful signin", async ()=>{
   await request(app)
-    .post("/api/users/signup")
+    .post("/api/v1/signup")
     .send({
       "name": "eda",
       "surname": "mente",
@@ -61,7 +61,7 @@ it("return 200 after successful signin", async ()=>{
     .expect(201);
 
     await request(app)
-    .post("/api/users/signin")
+    .post("/api/v1/signin")
     .send({
       "email": "edanurrmente@gmail.com",
       "password": "123456"

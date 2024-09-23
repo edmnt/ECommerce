@@ -26,8 +26,13 @@ This project's abilities are;
     ```bash
     npm install
     ```
+3. Please control your 3000 port is on process before start the project. You can use the command down below to control and kill the process on your port.
+   ```bash
+    lsof -i :3000
+    kill -9 <PID>
+    ```
 
-3. Start the project with npm or docker commands:
+4. Start the project with npm or docker commands:
   - With npm;
     ```bash
     npm start
@@ -38,10 +43,9 @@ This project's abilities are;
     docker run -p 3000:3000 eCommerceProject
      ```
 
-4. You can use Postman or likewise tools to test the project. When you are testing with these kind of tools, don't forget to add Authorization and token to headers. The token value should contains Bearer.
+5. You can use Postman or likewise tools to test the project. When you are testing with these kind of tools, don't forget to add Authorization and token to headers. The token value should contains Bearer.
     ```bash
     Authorization:Bearer <TOKEN>
-
     ```  
 
 ## Other Commands

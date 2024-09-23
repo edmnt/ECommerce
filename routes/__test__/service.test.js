@@ -1,7 +1,7 @@
 import { app } from "../../app.js";
 import request from "supertest";
 
-it("Return 400 if there is no service.", async()=>{
+it("Return 200 if services are listed succesfully.", async()=>{
   const testToken = await global.signin();
 
   const response = await request(app)
@@ -31,3 +31,4 @@ it("Return 401 if there is no user has the token.", async()=>{
   .set("Authorization", wrongToken)
   .expect(401); 
 });
+

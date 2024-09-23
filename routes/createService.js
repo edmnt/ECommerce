@@ -5,9 +5,8 @@ async function creatingServices(servicesJson){
   try {
     // Controlling database to prevent duplicate data
     const isEmpty = await Service.count();
-    console.log(isEmpty);
     if(isEmpty !== 0){
-      return console.log("Services are already created.");
+      return;
     }else{
       for await (let service of services){
         await Service.create({name: service.name, price: service.price, description: service.description});

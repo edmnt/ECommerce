@@ -18,6 +18,10 @@ const _CFG = Object.freeze({
 
 const app = express();
 
+app.get("/", async( req, res)=>{
+  res.send("Welcome!")
+});
+
 app.use(bodyParser.json());
 app.use(createOrderRouter);
 app.use(showOrdersRouter);

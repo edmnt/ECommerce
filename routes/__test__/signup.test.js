@@ -3,7 +3,7 @@ import request from "supertest";
 
 it("returns a 201 on succesful signup", async ()=> {
   return await request(app)
-    .post("/api/users/signup")
+    .post("/api/v1/signup")
     .send({
       "name": "eda",
       "surname": "mente",
@@ -14,7 +14,7 @@ it("returns a 201 on succesful signup", async ()=> {
 
 it("returns a 400 when trying to sign up with existing email.", async ()=> {
   await request(app)
-    .post("/api/users/signup")
+    .post("/api/v1/signup")
     .send({
       "name": "eda",
       "surname": "mente",
@@ -24,7 +24,7 @@ it("returns a 400 when trying to sign up with existing email.", async ()=> {
     .expect(201);
 
     await request(app)
-    .post("/api/users/signup")
+    .post("/api/v1/signup")
     .send({
       "name": "eda",
       "surname": "mente",
@@ -36,7 +36,7 @@ it("returns a 400 when trying to sign up with existing email.", async ()=> {
 
 it("returns a 400 when getting password less then 6 characters.", async ()=> {
   return await request(app)
-    .post("/api/users/signup")
+    .post("/api/v1/signup")
     .send({
       "name": "eda",
       "surname": "mente",
@@ -47,7 +47,7 @@ it("returns a 400 when getting password less then 6 characters.", async ()=> {
 
 it("it returns a 500 with missing email and password", async ()=> {
   return await request(app)
-    .post("/api/users/signup")
+    .post("/api/v1/signup")
     .send({
       
     })

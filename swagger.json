@@ -1,0 +1,344 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "E Commerce",
+    "version": "1.0.0",
+    "description": "A simple API for documentation",
+    "contact": {
+      "name": "Local Host",
+      "url": "http://localhost:3000/"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api-docs"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Service": {
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "price"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated id of the service"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the service"
+          },
+          "description": {
+            "type": "string",
+            "description": "The type of the service"
+          },
+          "price": {
+            "type": "integer",
+            "description": "Price of the service"
+          }
+        },
+        "example": {
+          "id": 1,
+          "name": "Standard Shipping",
+          "description": "Basic shipping service with average delivery time.",
+          "price": 5.00
+        }
+      },
+      "Order": {
+        "type": "object",
+        "required": [
+          "amount",
+          "price",
+          "serviceId",
+          "userId"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated id of the service"
+          },
+          "amount": {
+            "type": "string",
+            "description": "The name of the service"
+          },
+          "serviceId": {
+            "type": "string",
+            "description": "The type of the service"
+          },
+          "price": {
+            "type": "integer",
+            "description": "Price of the service"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Price of the service"
+          }
+        },
+        "example": {
+          "id": 1,
+          "name": "Standard Shipping",
+          "description": "Basic shipping service with average delivery time.",
+          "price": 5.00
+        }
+      },
+      "User": {
+        "type": "object",
+        "required": [
+          "name",
+          "surname",
+          "email",
+          "password"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated id of the service"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the user"
+          },
+          "surname": {
+            "type": "string",
+            "description": "The surnam of the user"
+          },
+          "email": {
+            "type": "integer",
+            "description": "The email of the user."
+          },
+          "password": {
+            "type": "string",
+            "description": "The password of the user. It contained as hashed in database."
+          },
+            "balance": {
+              "type": "integer",
+              "description": "Balance of the user. The Balance is 100 at start."
+          }
+        },
+        "example": {
+          "name": "eda",
+          "surname": "mente",
+          "email": "edanur@test.com",
+          "password": "$2a$12$yPlkTVOuGv0190WvfxXd/u/dGK8vdwT.4kRxBe0G6pgGul7CpfpQa",
+          "balance": 100
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/v1/services": {
+      "get": {
+        "tags": [
+          "Service"
+        ],
+        "summary": "List all the services.",
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "example": {
+                    "services": [
+                        {
+                            "id": 1,
+                            "name": "Standard Shipping",
+                            "price": 5,
+                            "description": "Basic shipping service with average delivery time.",
+                            "createdAt": "2024-09-23T09:22:21.662Z",
+                            "updatedAt": "2024-09-23T09:22:21.662Z"
+                        }
+                      ]
+                    }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "There is no service."
+          }
+        }
+      }
+    },
+    "/api/v1/order": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "List all the orders.",
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "example": {
+                      "orders": [
+                          {
+                              "id": 1,
+                              "amount": 5,
+                              "serviceId": 3,
+                              "price": 12.5,
+                              "userId": "1",
+                              "createdAt": "2024-09-23T08:23:25.060Z",
+                              "updatedAt": "2024-09-23T08:23:25.060Z"
+                          }
+                        ]
+                    }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "There is no order that purchased."
+          }
+        }
+      }
+    },
+    "/api/v1/order/:serviceId": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Purchase an order.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Service ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "example":{
+                  "amount": 7
+              }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product Created.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "order": {
+                    "id": 4,
+                    "amount": 7,
+                    "serviceId": 3,
+                    "userId": 1,
+                    "price": 17.5,
+                    "updatedAt": "2024-09-23T08:23:33.823Z",
+                    "createdAt": "2024-09-23T08:23:33.823Z"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server issued an error."
+          }
+        }
+      }
+    },
+    "/api/users/signup": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create new user.",
+        "requestBody": {
+          "description": "Creating user.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type":"object",
+                "example": {
+                  "name": "eda",
+                  "surname": "mente",
+                  "email": "edanur@test.com",
+                  "password": "123456"
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created Products",
+            "content": {
+              "application/json": {
+                "example": {
+                  "user": {
+                    "name": "eda",
+                    "surname": "mente",
+                    "email": "edanur@test.com",
+                    "balance": 100
+                }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server issued an error."
+          }
+        }
+      }
+    },
+    "/api/v1/signin": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Signin with the signed up user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "email": "edanur@test.com",
+                "password": "123456"
+            }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Updated Successfuly",
+            "content": {
+              "application/json": {
+                "example": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlZGEyMDk1IiwiZW1haWwiOiJlZGFudXJAdGVzdC5jb20iLCJpZCI6MSwiaWF0IjoxNzI3MDg1NzUwLCJleHAiOjE3MjcwODkzNTB9.MsWhStUUPidWhC2J1GxTS_kHNBKN20tMV76ccQRZnYU"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server issued an error."
+          }
+        }
+      }
+    }
+  }
+}

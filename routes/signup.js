@@ -4,7 +4,7 @@ import { User } from "../models/user.js";
 
 const router = express.Router();
 
-router.post("/api/users/signup", async (req, res)=>{
+router.post("/api/v1/signup", async (req, res)=>{
   try {
     const {name, surname, email, password} = req.body;
     const balance = 100;

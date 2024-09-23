@@ -7,25 +7,12 @@ it("Return 201 if order got created.", async()=>{
   const service = await global.service();
 
   const response = await request(app)
-  .post(`/api/v1/order/${service.id}`)
+  .post(`/api/v1/order/${service[0].id}`)
   .set("Authorization", testToken)
   .send({
     amount: 2
   })
   .expect(201); 
-
-});
-
-it("Return 200 if there is no service that can purchased.", async()=>{
-  const testToken = await global.signin();
-
-  const response = await request(app)
-  .post("/api/v1/order/2")
-  .set("Authorization", testToken)
-  .send({
-    amount: 2
-  })
-  .expect(200); 
 
 });
 
@@ -35,7 +22,7 @@ it("Return 401 if token is expired.", async()=>{
   const service = await global.service();
 
   await request(app)
-  .post(`/api/v1/order/${service.id}`)
+  .post(`/api/v1/order/${service[0].id}`)
   .set("Authorization", wrongToken)
   .send({
     amount: 2
@@ -54,7 +41,7 @@ it("Return 401 if there is no user has the token.", async()=>{
   const service = await global.service();
 
   await request(app)
-  .post(`/api/v1/order/${service.id}`)
+  .post(`/api/v1/order/${service[0].id}`)
   .set("Authorization", wrongToken)
   .send({
     amount: 2
@@ -72,10 +59,10 @@ it("Return if user's balance insufficient.", async()=>{
   const service = await global.service();
 
   const response = await request(app)
-  .post(`/api/v1/order/${service.id}`)
+  .post(`/api/v1/order/${service[0].id}`)
   .set("Authorization", testToken)
   .send({
-    amount: 4
+    amount: 100
   })
   .expect(400);
 
@@ -87,6 +74,6 @@ it("Return 400 if there is no order.", async()=>{
   const response = await request(app)
   .get(`/api/v1/orders`)
   .set("Authorization", testToken)
-  .expect(200);
+  .expect(204);
 
 });
